@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text: #040316;
+    --background: #ffffff;
+    --primary: #000000;
+    --secondary: #0d00ff;
+    --accent: #ff7300;
+    --button-active-outline: lightgray;
+    --button-active-filled: gray;
+  }
+  .dark {
+    --text: #eae9fc;
+    --background: #000000;
+    --primary: #ffffff;
+    --secondary: #0d00ff;
+    --accent: #ff7300;
+    --button-active-outline: gray;
+    --button-active-filled: lightgray;
+  }
+}
+
+body {
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
