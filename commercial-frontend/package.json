@@ -17,7 +17,8 @@
     "next-themes": "^0.4.4",
     "prettier": "^3.4.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

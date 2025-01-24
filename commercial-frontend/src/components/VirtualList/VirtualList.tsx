@@ -221,8 +221,10 @@ export const useFixedSizeList = (props: UseFixedSizeListProps) => {
   const measureElement = useCallback(
     (element: Element | null) => {
       if (!element) return;
+
       const indexAttribute = element.getAttribute("data-index") || "";
       const index = parseInt(indexAttribute, 10);
+
       if (Number.isNaN(index)) {
         console.error(
           "Dynamic elements must have a valid data-index attribute",
@@ -249,7 +251,7 @@ export const useFixedSizeList = (props: UseFixedSizeListProps) => {
   };
 };
 
-const TOTAL_LIST = Array.from({ length: 10000 }).map((_, i) => {
+const TOTAL_LIST = Array.from({ length: 100000 }).map((_, i) => {
   return { key: i, text: faker.lorem.text() };
 });
 
@@ -261,7 +263,7 @@ export const VirtualList = () => {
       itemsCount: TOTAL_LIST.length,
       // itemHeight: () => 100,
       estimateItemHeight: () => 200,
-      gapHeight: 0,
+      gapHeight: 20,
       getScrollingElement: useCallback(() => divContainerRef.current, []),
       scrollingDelay: 0,
       overscan: 3,

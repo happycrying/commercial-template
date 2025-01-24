@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "@/app/page";
 import "@testing-library/jest-dom";
+import ResizeObserver from "resize-observer-polyfill";
+global.ResizeObserver = ResizeObserver;
 
 describe("Virtual List", () => {
   it("should be on the page", () => {
