@@ -34,7 +34,7 @@ const ListItem = (props: IListItemProps) => {
   );
 };
 
-const TOTAL_LIST = Array.from({ length: 10000 }).map((_, i) => {
+const TOTAL_LIST = Array.from({ length: 100 }).map((_, i) => {
   return { key: i, text: faker.lorem.paragraph({ min: 3, max: 6 }) };
   // return {
   //   key: i,
@@ -49,7 +49,7 @@ export const VirtualList = () => {
     useVirtualList({
       itemsCount: TOTAL_LIST.length,
       // itemHeight: () => 100,
-      estimateItemHeight: () => 16,
+      estimateItemHeight: () => 100,
       gapHeight: 20,
       getScrollingElement: useCallback(() => divContainerRef.current, []),
       scrollingDelay: 0,

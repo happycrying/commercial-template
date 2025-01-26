@@ -152,18 +152,16 @@ export const useVirtualList = (props: UseVirtualListProps) => {
         totalHeight += row.height + (index < itemsCount - 1 ? gapHeight : 0);
         allRows[index] = row;
 
-        if (startIndex === -1) {
-          startIndex =
-            row.offsetTop + row.height > rangeStart
-              ? Math.max(0, row.index - overscan)
-              : -1;
-        } else if (endIndex === -1) {
-          endIndex =
-            row.offsetTop + row.height >= rangeEnd
-              ? Math.min(itemsCount - 1, row.index + overscan)
-              : -1;
+        if (row.offsetTop + row.height < rangeStart) {
+          startIndex++;
+        }
+
+        if (row.offsetTop + row.height < rangeEnd) {
+          endIndex++;
         }
       }
+      startIndex = Math.max(0, startIndex - overscan);
+      endIndex = Math.min(itemsCount, endIndex + overscan);
 
       const virtualRows = allRows.slice(startIndex, endIndex + 1);
       return {
