@@ -22,16 +22,17 @@ export function MoveObserver(
     const rootMarginNumbers = [
       rect.top,
       root.clientWidth - rect.right,
-      root.clientWidth - rect.bottom,
+      root.clientHeight - rect.bottom,
       rect.left,
     ];
 
     const rootMargin = rootMarginNumbers
-      .map((size) => `-${Math.floor(size)}px`)
+      .map((size) => `-${Math.abs(Math.floor(size))}px`)
       .join(" ");
 
     intersectionObserver = new IntersectionObserver(
-      ([entry]) => {
+      (entries) => {
+        const entry = entries[0];
         if (!entry) return;
         const ratio = entry.intersectionRatio;
 

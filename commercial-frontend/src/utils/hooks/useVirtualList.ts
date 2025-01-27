@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { useLatest } from "@/utils/hooks/useLatest";
+import ResizeObserver from "resize-observer-polyfill";
 
 export type ItemKey = string | number;
 
@@ -189,6 +190,7 @@ export const useVirtualList = (props: UseVirtualListProps) => {
   }>({ measurementCache, getItemKey });
 
   const itemsResizeObserver = useMemo(() => {
+    if (!ResizeObserver) return;
     return new ResizeObserver((entries, observer) => {
       entries.forEach((entry) => {
         const element = entry.target;
@@ -244,7 +246,7 @@ export const useVirtualList = (props: UseVirtualListProps) => {
       const { measurementCache, getItemKey } = latestData.current;
       const key = getItemKey(index);
 
-      itemsResizeObserver.observe(element);
+      if (itemsResizeObserver) itemsResizeObserver.observe(element);
 
       if (typeof measurementCache[key] === "number") {
         return;

@@ -1,11 +1,16 @@
 "use client";
 import { Button } from "@/components/Button/Button";
 import { redirect } from "next/navigation";
+import React, { useCallback } from "react";
 
-export const InteractiveButtons = () => {
+const InteractiveButtonsNoMemo = () => {
+  const onLoginButtonClick = useCallback(() => {
+    redirect("/dashboard");
+  }, []);
+
   return (
     <>
-      <Button variant={"OUTLINE"} onClick={() => redirect("/dashboard")}>
+      <Button variant={"OUTLINE"} onClick={onLoginButtonClick}>
         Login
       </Button>
       or
@@ -13,3 +18,5 @@ export const InteractiveButtons = () => {
     </>
   );
 };
+
+export const InteractiveButtons = React.memo(InteractiveButtonsNoMemo);
