@@ -1,7 +1,6 @@
 import ThemeSwitcher from "@/components/ThemeSwitch/ThemeSwitcher";
 import { InteractiveButtons } from "@/app/_interactiveButtons";
-import { VirtualList } from "@/components/VirtualList/VirtualList";
-import { FunnyTooltipExample } from "@/components/FunnyTooltipExample/FunnyTooltipExample";
+import { CEXScraped } from "@/components/CEX/CEXScraped";
 
 export default function Home() {
   return (
@@ -18,8 +17,11 @@ export default function Home() {
             <InteractiveButtons />
           </div>
         </main>
-        <FunnyTooltipExample />
-        <VirtualList />
+        <div className="flex gap-10 w-fit h-fit">
+          {/*<BinanceScraped />*/}
+          {/*<BybitScraped />*/}
+          <CEXScraped />
+        </div>
       </div>
       <footer
         className={

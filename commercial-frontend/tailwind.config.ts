@@ -23,6 +23,7 @@ export default {
         typing: "typing 1s steps(35), cursor .6s step-end infinite alternate",
         appearFromTop: "appearFromTop 1s 1s ease-in-out",
         appearBlocks: "appearBlocks linear",
+        textChange: "text-change 0.3s ease-out;",
       },
       keyframes: {
         typing: {
@@ -44,6 +45,10 @@ export default {
             opacity: "1",
             scale: "1",
           },
+        },
+        textChange: {
+          "0%": { backgroundColor: "var(--primary)" },
+          "100%": { backgroundColor: "transparent" },
         },
       },
     },

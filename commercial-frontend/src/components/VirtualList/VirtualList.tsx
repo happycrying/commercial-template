@@ -1,6 +1,6 @@
 "use client";
 
-import { Ref, useCallback, useRef } from "react";
+import { Ref, useCallback, useMemo, useRef } from "react";
 import { faker } from "@faker-js/faker/locale/en";
 import { useVirtualList } from "@/utils/hooks/useVirtualList";
 
@@ -57,7 +57,7 @@ export const VirtualList = () => {
       getItemKey: useCallback((i: number) => TOTAL_LIST[i].key, []),
     });
 
-  const renderItems = () => {
+  const renderItems = useMemo(() => {
     return virtualItems.map((_item) => {
       const realItem = TOTAL_LIST[_item.index]!;
       return (
@@ -73,21 +73,25 @@ export const VirtualList = () => {
         />
       );
     });
-  };
+  }, [isScrolling, measureElement, virtualItems]);
 
-  return (
-    <div
-      className={`w-[500px] h-[800px] overflow-y-scroll relative`}
-      role={"virtualList"}
-      ref={divContainerRef}
-    >
+  const renderList = useMemo(() => {
+    return (
       <div
-        style={{ height: totalHeight }}
-        className="flex flex-col w-fit"
-        role={"virtualListContainer"}
+        className={`w-[500px] h-[800px] overflow-y-scroll relative`}
+        role={"virtualList"}
+        ref={divContainerRef}
       >
-        {renderItems()}
+        <div
+          style={{ height: totalHeight }}
+          className="flex flex-col w-fit"
+          role={"virtualListContainer"}
+        >
+          {renderItems}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }, [totalHeight, renderItems]);
+
+  return <>{renderList}</>;
 };
